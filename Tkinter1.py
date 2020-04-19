@@ -34,6 +34,4 @@ bt_star = Button(btns_frame, text="*", width =10,height=3,bg="orange", fg="red")
 bt0 = Button(btns_frame, text="0", width =10,height=3,bg="orange", fg="red").grid(column=2,row=4)
 bt_hash = Button(btns_frame, text="#", width =10,height=3,bg="orange", fg="red").grid(column=3,row=4    )
 
-
-
 window.mainloop()

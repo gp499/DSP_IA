@@ -1,5 +1,6 @@
 import pyaudio
 import numpy as np
+from scipy.io import wavfile
 
 
 def main():
@@ -33,15 +34,18 @@ def main():
     sound = play.open(rate=sampling_freq, channels=1, format=pyaudio.paFloat32, output=True)
     keys = input("Insert string:").upper()
     keys = [k for k in keys if k in tones]
+    waveop = np.zeros(int(sampling_freq*silence_length),dtype='float32')
     for k,key in enumerate(keys):
         tone = tones[key]
         wave = volume*np.sin(2.0*np.pi*t*tone[0]) + np.sin(2.0*np.pi*t*tone[1])
         wave = wave.astype('float32')
+        waveop = np.append(waveop,wave)
         sound.write(wave.tostring())
         if k+1 != len(keys):
             sound.write(s.tostring())
     sound.close()
     play.terminate()
+    wavfile.write('op.wav', sampling_freq, waveop.astype('float32'))
     return
 
 

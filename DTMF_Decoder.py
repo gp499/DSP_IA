@@ -92,7 +92,7 @@ class PygoertzelDtmf:
 
 if __name__ == '__main__':
     # load wav file
-    wav = wave.open('C:/Users/91845/Downloads/dtmf1.wav', 'r')
+    wav = wave.open('C:/Users/91845/PycharmProjects/DSP_IA/op.wav', 'r')#C:\Users\91845\PycharmProjects\DSP_IA\op.wav
     (nchannels, sampwidth, framerate, nframes, comptype, compname) = wav.getparams()
     frames = wav.readframes(nframes * nchannels)
     # convert wave file to array of integers
