@@ -3,7 +3,7 @@ import numpy as np
 from scipy.io import wavfile
 
 
-class DtmfEncoder:
+class DTMF_Encoder:
     def __init__(self):
         self.silence_length = 0.1
         self.tone_length = 0.5
@@ -23,9 +23,9 @@ class DtmfEncoder:
             '8': (freq[2], freq[5]),
             '9': (freq[2], freq[6]),
             'C': (freq[2], freq[7]),
-            'F': (freq[3], freq[4]),
+            '*': (freq[3], freq[4]),
             '0': (freq[3], freq[5]),
-            'M': (freq[3], freq[6]),
+            '#': (freq[3], freq[6]),
             'D': (freq[3], freq[7])
         }
         self.t = np.linspace(0, self.tone_length, int(self.sampling_freq * self.tone_length) + 1)
@@ -95,8 +95,8 @@ class DtmfEncoder:
 #     wavfile.write('op.wav', sampling_freq, waveop.astype('float32'))
 #     return
 
-
-if __name__ == '__main__':
-    dtmf = DtmfEncoder()
-    keys = input("Insert string:").upper()
-    dtmf.encoder(keys)
+#
+# if __name__ == '__main__':
+#     dtmf = DTMF_Encoder()
+#     keys = input("Insert string:").upper()
+#     dtmf.encoder(keys)

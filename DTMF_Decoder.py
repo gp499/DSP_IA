@@ -91,7 +91,7 @@ class PygoertzelDtmf:
         return self.__get_number(freqs)
 
 
-class DtmfDecoder:
+class DTMF_Decoder:
     def __init__(self):
         self.framerate, frames = wavfile.read('C:/Users/91845/PycharmProjects/DSP_IA/op.wav', 'r')
         nchannels = 1
@@ -109,6 +109,7 @@ class DtmfDecoder:
         self.prevcounter = 0
 
     def decode(self,):
+        op = str()
         for i in range(0, len(self.left) - self.binsize, int(self.binsize / self.binsize_split)):
             goertzel = PygoertzelDtmf(self.framerate)
             for j in self.left[i:i + self.binsize]:
@@ -116,15 +117,15 @@ class DtmfDecoder:
             if value == self.prevvalue:
                 self.prevcounter += 1
                 if self.prevcounter == 10:
-                    print(value)
+                    op += str(value)
             else:
                 self.prevcounter = 0
                 self.prevvalue = value
-
-
-if __name__ == '__main__':
-    dtmf = DtmfDecoder()
-    dtmf.decode()
+        return op
+#
+# if __name__ == '__main__':
+#     dtmf = DTMF_Decoder()
+#     dtmf.decode()
 
     # load wav file
     # framerate, frames = wavfile.read('C:/Users/91845/PycharmProjects/DSP_IA/op.wav', 'r')
