@@ -22,6 +22,8 @@ def but_click(number):
 
 
 def but_clear():
+    global number1
+    number1 = ""
     input_text.set("")
 
 
